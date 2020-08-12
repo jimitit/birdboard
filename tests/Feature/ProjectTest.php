@@ -73,23 +73,13 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function a_project_requires_a_owner()
-    {
-        //$this->withoutExceptionHandling();
-
-        $attributes = factory('App\Project')->raw();
-
-        $this->post('/projects', $attributes)->assertRedirect('login');
-    }
-
-    /** @test */
     public function guest_may_not_view_projects()
     {
         $this->get('/projects')->assertRedirect('/login');
     }
 
     /** @test */
-    public function guest_cann_not_create_projects()
+    public function guest_can_not_create_projects()
     {
         $attributes = factory('App\Project')->raw();
 
