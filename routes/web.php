@@ -18,14 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/projects', [ProjectsController::class, 'index']);
 
     Route::post('/projects', [ProjectsController::class, 'store']);
 
+    Route::get('/projects/create', [ProjectsController::class, 'create']);
     Route::get('/projects/{project}', [ProjectsController::class, 'show']);
 
     Route::get('/home', 'HomeController@index')->name('home');
 });
-
-Auth::routes();
